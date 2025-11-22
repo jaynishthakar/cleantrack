@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanTrack | Login & Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light consumer-theme"> 
+    
+    <nav class="navbar navbar-light bg-white shadow-sm px-4">
+        <h3 class="navbar-brand">CleanTrack</h3>
+    </nav>
+
+    <div class="main-content d-flex flex-column justify-content-center align-items-center text-center">
+        <h1 class="display-3 text-white fw-bold mb-3 system-tagline">
+            Your City. Your Voice. CleanTrack.
+        </h1>
+        <p class="lead text-white-50 mb-5">
+            A comprehensive complaint management system for better public service.
+        </p>
+        
+        <div class="d-flex gap-3">
+            <button class="btn btn-lg btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </button>
+            <button class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
+                <i class="bi bi-person-plus"></i> Sign Up
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <h4>Login</h4>
+                <form id="loginForm">
+                    <input class="form-control mb-2" id="loginId" placeholder="Login ID / Email" required>
+                    <input class="form-control mb-2" id="password" placeholder="Password / Phone" required>
+                    <select class="form-select mb-3" id="role" required>
+                        <option value="">-- Select Role --</option>
+                        <option value="consumer">Consumer</option>
+                        <option value="authority">Authority</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <h4>Sign Up</h4>
+                <form id="signupForm">
+                    <select class="form-select mb-3" id="signup_role" required>
+                        <option value="">-- Select Role --</option>
+                        <option value="consumer">Consumer</option>
+                        <option value="authority">Authority</option>
+                    </select>
+
+                    <div id="consumerFields" class="role-fields d-none">
+                        <input class="form-control mb-2" id="c_name" placeholder="Full Name" required>
+                        <input class="form-control mb-2" id="c_email" placeholder="Email" required>
+                        <input class="form-control mb-2" id="c_phone" placeholder="Phone" required>
+                        <input class="form-control mb-2" id="c_address" placeholder="Address" required>
+                        <input class="form-control mb-2" id="c_locality" placeholder="Locality ID" required>
+                        <input class="form-control mb-2" id="c_login" placeholder="Login ID" required>
+                        <input class="form-control mb-2" id="c_password" type="password" placeholder="Password" required>
+                    </div>
+
+                    <div id="authorityFields" class="role-fields d-none">
+                        <input class="form-control mb-2" id="a_name" placeholder="Officer Name" required>
+                        <input class="form-control mb-2" id="a_email" placeholder="Email" required>
+                        <input class="form-control mb-2" id="a_phone" placeholder="Contact No" required>
+                        <input class="form-control mb-2" id="a_address" placeholder="Office Address" required>
+                        <input class="form-control mb-2" id="a_login" placeholder="Login ID" required>
+                        <input class="form-control mb-2" id="a_password" placeholder="Password" type="password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 mt-2">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script> 
+</body>
+</html>

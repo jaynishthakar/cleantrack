@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleanTrack | Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: "Poppins", sans-serif;
+    }
+    .card, .table {
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .btn {
+      border-radius: 8px;
+    }
+    .modal-content {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-primary px-4">
+    <span class="navbar-brand fs-4">🧹 CleanTrack Dashboard</span>
+    
+    <div class="d-flex align-items-center">
+        <div class="dropdown me-3">
+            <button class="btn btn-outline-light position-relative" type="button" id="notificationBell" data-bs-toggle="dropdown" aria-expanded="false">
+                🔔
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" id="notificationCount">
+                    0
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationBell" id="notificationList" style="max-height: 300px; overflow-y: auto; width: 300px;">
+                <li class="dropdown-header">Latest Notifications</li>
+                </ul>
+        </div>
+        
+        <button class="btn btn-outline-light" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <h3 id="welcome" class="mb-3"></h3>
+    <hr />
+
+    <div id="consumerView" class="d-none">
+      <h4 class="mb-3">📝 File a New Complaint</h4>
+      <form id="complaintForm" class="card p-3 mb-4 shadow-sm">
+        <textarea id="description" class="form-control mb-2" placeholder="Describe your complaint..." required></textarea>
+        <input type="number" id="locality_id" class="form-control mb-2" placeholder="Locality ID" required />
+        <button type="submit" class="btn btn-success w-100">Submit Complaint</button>
+      </form>
+
+      <h4 class="mb-3">📋 Your Complaints</h4>
+      <div class="table-responsive mb-4">
+        <table class="table table-bordered align-middle shadow-sm bg-white">
+          <thead class="table-primary">
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Authority</th>
+               <th>Action</th> 
+            </tr>
+          </thead>
+          <tbody id="consumerComplaints"></tbody>
+        </table>
+      </div>
+
+      <h4 class="mt-5 mb-3">🗑️ Deleted Complaints (History)</h4>
+<div class="table-responsive mb-4">
+  <table class="table table-bordered align-middle shadow-sm bg-white">
+    <thead class="table-danger">
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Deleted At</th>
+      </tr>
+    </thead>
+    <tbody id="deletedComplaints"></tbody>
+  </table>
+</div>
+
+
+      <button class="btn btn-outline-primary mb-3" id="reactBtn">💬 React to Nearby Issues</button>
+      <div id="nearbySection" class="d-none">
+
+        <h4 class="mb-3">Nearby Complaints</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle bg-white shadow-sm">
+            <thead class="table-info">
+              <tr>
+                <th>ID</th>
+                <th>Locality</th>
+                <th>Description</th>
+                <th>By</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="allComplaints"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="authorityView" class="d-none">
+      <h4 class="mb-3">🚨 Complaints Status</h4>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle shadow-sm bg-white">
+          <thead class="table-primary">
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="authorityComplaints"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="completeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="completeForm" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Mark Complaint Completed</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="completeComplaintId" />
+          <label>NGO / Contractor Name</label>
+          <input type="text" id="ngoName" class="form-control mb-3" required />
+          <label>Upload Proof Image</label>
+          <input type="file" id="proofImage" class="form-control mb-3" accept="image/*" required />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success w-100">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="proofModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Proof of Completion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>NGO / Contractor:</strong> <span id="proofNgo"></span></p>
+        <img id="proofImageDisplay" class="img-fluid border rounded mb-3" alt="Proof image">
+
+        <div id="feedbackSection">
+          <h6>Leave Feedback</h6>
+          <input type="number" id="rating" min="1" max="5" class="form-control mb-2" placeholder="Rating (1–5)">
+          <textarea id="review" class="form-control mb-2" placeholder="Write your feedback..."></textarea>
+          <button class="btn btn-primary w-100" id="submitFeedback">Submit Feedback</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="modal fade" id="commentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title">Comments on Complaint #<span id="commentComplaintId"></span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="commentsList" class="border rounded p-2 mb-3" style="max-height: 250px; overflow-y: auto;"></div>
+          <textarea id="commentText" class="form-control mb-2" placeholder="Add a comment..."></textarea>
+          <button class="btn btn-success w-100" id="submitComment">Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

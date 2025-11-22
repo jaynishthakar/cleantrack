@@ -1,0 +1,118 @@
+/* --- Global Styling and Variables --- */
+:root {
+    --consumer-primary: #0d6efd; /* Bootstrap Blue */
+    --authority-primary: #198754; /* Bootstrap Green */
+    --primary-color: var(--consumer-primary); /* Default */
+    --background-color: #f8f9fa;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    transition: background-color 0.5s ease;
+    background-color: var(--background-color);
+    /* Make body take up full viewport height for centering content */
+    min-height: 100vh;
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Stack navbar and content */
+}
+
+/* --- New: Main Content Styling --- */
+.main-content {
+    /* Use flex-grow to make content take up remaining space */
+    flex-grow: 1; 
+    /* Max width to keep text readable */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px; 
+    position: relative; 
+    
+    /* MODIFIED: Added semi-transparent background for focus */
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(3px); /* Optional: Adds a nice frosted glass effect */
+    border-radius: 15px; /* Rounded corners */
+    margin-top: 50px; 
+    margin-bottom: 50px;
+}
+
+.system-tagline {
+    /* Slightly glowing text for impact */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+/* --- Shared Component Styles --- */
+.card, .table {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.btn {
+    border-radius: 8px;
+    /* MODIFIED: Increased button size visually (beyond the standard btn-lg) */
+    padding: 15px 30px; 
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.navbar-brand {
+    font-weight: 700;
+}
+.navbar {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* --- Consumer Theme (Blue/Vibrant) --- */
+.consumer-theme {
+    --primary-color: var(--consumer-primary);
+    
+    /* BACKGROUND IMAGE AND OVERLAY FOR READABILITY */
+    background-image: 
+        /* Darker overlay for text readability */
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+        /* Image URL - Replace with your own local image if desired */
+        url('../images/cleantrack.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+.consumer-theme .btn-outline-light {
+    border-color: white;
+    color: white;
+}
+.consumer-theme .btn-outline-light:hover {
+    background-color: white;
+    color: var(--consumer-primary);
+}
+.consumer-theme .bg-primary {
+    background-color: var(--consumer-primary) !important;
+}
+.consumer-theme .table-primary {
+    --bs-table-bg: #cfe2ff; 
+}
+.consumer-theme .btn-success {
+    background-color: #28a745; 
+    border-color: #28a745;
+}
+
+/* --- Authority Theme (Green/Professional) --- */
+.authority-theme {
+    --primary-color: var(--authority-primary);
+    background-image: 
+        /* Darker overlay for text readability */
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+        /* Image URL - Replace with your own local image if desired */
+       url('../images/cleantrack.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+.authority-theme .bg-primary {
+    background-color: var(--authority-primary) !important;
+}
+.authority-theme .table-primary {
+    --bs-table-bg: #d1e7dd; 
+}
+.authority-theme .table-info {
+    --bs-table-bg: #cff4fc;
+    color: #055160;
+}
+.authority-theme h5 {
+    font-weight: 600;
+    color: #198754;
+}
