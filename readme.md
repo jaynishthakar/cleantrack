@@ -100,28 +100,6 @@ Relational schema
 
 Triggers, Views, Subqueries
 
-📁 Project Structure
-CleanTrack/
-│
-├── backend/
-│   ├── server.js
-│   ├── db.js
-│   ├── routes/
-│   │    ├── auth.js
-│   │    └── complaints.js
-│   ├── uploads/
-│   └── .env
-│
-├── frontend/
-│   ├── index.html
-│   ├── dashboard.html
-│   ├── css/style.css
-│   ├── images/cleantrack.jpg
-│   └── js/
-│       ├── main.js
-│       └── dashboard.js
-│
-└── README.md
 
  Installation & Setup
 1️ Clone the repository
