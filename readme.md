@@ -2,7 +2,7 @@ CleanTrack – Complaint Management System
 
 A full-stack municipal grievance redressal platform
 
-📌 Overview
+ Overview
 
 CleanTrack is a full-stack, database-driven complaint management system designed to help citizens report municipal issues and enable authorities to efficiently track, assign, and resolve them.
 
@@ -22,8 +22,8 @@ A clean, modern UI with role-based dashboards
 
 CleanTrack demonstrates practical application of DBMS concepts, including triggers, views, subqueries, transaction handling, and relational schema design.
 
-🚀 Features
-👤 Consumer Features
+ Features
+ Consumer Features
 
 Login and signup
 
@@ -41,7 +41,7 @@ Interact via comments on nearby complaints
 
 Delete complaints (handled by database trigger)
 
-🛠️ Authority Features
+ Authority Features
 
 View all relevant complaints grouped by status
 
@@ -55,7 +55,7 @@ View full comment threads
 
 Receive notifications automatically
 
-🗄 Database Features
+ Database Features
 
 Normalized relational schema
 
@@ -69,8 +69,8 @@ Subquery usage in dashboard analytics
 
 Automatic timestamps
 
-🧰 Tech Stack
-🔹 Frontend
+Tech Stack
+Frontend:
 
 HTML5
 
@@ -123,12 +123,12 @@ CleanTrack/
 │
 └── README.md
 
-⚙️ Installation & Setup
-1️⃣ Clone the repository
+ Installation & Setup
+1️ Clone the repository
 git clone https://github.com/USERNAME/CLEANTRACK-REPO.git
 cd CLEANTRACK-REPO
 
-2️⃣ Backend Setup
+2️ Backend Setup
 Install dependencies
 cd backend
 npm install
@@ -147,7 +147,7 @@ Backend runs at:
 
 http://127.0.0.1:5000
 
-3️⃣ Frontend Setup
+3️ Frontend Setup
 
 No build process needed.
 
@@ -158,8 +158,8 @@ frontend/index.html
 
 in your browser.
 
-🗄️ Database Schema Overview
-✔ Important Tables
+ Database Schema Overview
+ Important Tables
 
 Consumer
 
@@ -177,7 +177,7 @@ Notification
 
 DeletedComplaints (trigger logs deleted complaints)
 
-✔ Trigger Implemented
+ Trigger Implemented
 CREATE TRIGGER complaint_delete_trigger
 AFTER DELETE ON Complaint
 FOR EACH ROW
@@ -186,17 +186,17 @@ BEGIN
     INSERT INTO Notification (...);
 END;
 
-✔ View Implemented
+ View Implemented
 CREATE VIEW active_complaints_view AS
 SELECT ...
 FROM Complaint
 WHERE status = 'Pending';
 
-✔ Example Subquery
+ Example Subquery
 
 Used to fetch complaints that have feedback OR comments.
 
-📡 API Endpoints (Summary)
+ API Endpoints (Summary)
 🔹 Authentication
 Method	Route	Description
 POST	/api/auth/signup	Register consumer/authority
